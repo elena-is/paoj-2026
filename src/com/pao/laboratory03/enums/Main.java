@@ -51,6 +51,49 @@ public class Main {
     public static void main(String[] args) {
         // TODO: implementează pașii de mai sus
         // Hint: creează mai întâi fișierul Priority.java în acest pachet
+//  *   a) Parcurge toate valorile cu Priority.values() și afișează:
+//  *      "emoji name (level=X, color=Y)"
+        System.out.println("=== Toate prioritățile ===");
+        for (Priority p : Priority.values()) {
+            System.out.printf("%s %s (level=%d, color=%s)%n", 
+                    p.getEmoji(), p.name(), p.getLevel(), p.getColor());
+        }
+
+        //*   b) Folosește switch pe un Priority și afișează un mesaj specific.
+        System.out.println("\n=== Switch pe prioritate ===");
+        Priority current = Priority.HIGH;
+        switch (current) {
+            case LOW:
+                System.out.println("Prioritatea este scazuta, e oke ;)");
+                break;
+            case MEDIUM:
+                System.out.println("Prioritate medie, vezi daca ai timp ;)");
+                break;
+            case HIGH:
+            case CRITICAL:
+                System.out.println("⚠️ Atenție! Prioritate ridicată!");
+                break;
+        }
+
+        //*   c) Convertește un String în Priority cu Priority.valueOf("HIGH") — afișează rezultatul.
+        System.out.println("\n=== valueOf ===");
+        Priority prioRidicata = Priority.valueOf("HIGH");
+        System.out.println("Priority.valueOf(\"HIGH\") = " + prioRidicata);
+
+        // *   d) Demonstrează compararea: folosește == între două enum-uri (NU .equals()).
+        System.out.println("\n=== Comparare enum ===");
+        Priority prioRidi2 = Priority.HIGH;
+        Priority prioJoasa = Priority.LOW;
+        
+        System.out.println("HIGH == HIGH? " + (prioRidicata == prioRidi2));
+        System.out.println("HIGH == LOW? " + (prioRidi2 == prioJoasa));
+
+        //e) Afișează name() și ordinal() pentru fiecare constantă.
+        System.out.println("=== name() și ordinal() ===");
+        for (Priority p : Priority.values()) {
+            System.out.println(p.name() + ": name=" + p.name() + ", ordinal=" + p.ordinal());
+        }
     }
+
 }
 

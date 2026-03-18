@@ -1,5 +1,5 @@
 package com.pao.laboratory03.collections;
-
+import java.util.*;
 /**
  * Exercițiul 1 — Colecții: HashMap și TreeMap
  *
@@ -51,6 +51,27 @@ package com.pao.laboratory03.collections;
 public class Main {
     public static void main(String[] args) {
         // TODO: implementează cele 3 părți de mai sus
+        // * PARTEA A — HashMap (frecvența cuvintelor)
+        // * 1. Declară un array de String-uri:
+        String[] words = {"java", "python", "java", "c++", "python", "java", "rust", "c++", "go"};
+        // * 2. Creează un HashMap<String, Integer> care contorizează de câte ori apare fiecare cuvânt.
+        Map<String, Integer> freq = new HashMap<>();
+        for (String c : words) {
+            freq.put(c, freq.getOrDefault(c, 0) + 1);
+        }
+        // *    - Parcurge array-ul și folosește put() + getOrDefault() pentru a incrementa contorul.
+        // * 3. Afișează map-ul.
+        System.out.println("Map complet: " + freq);
+        // * 4. Verifică dacă există cheia "rust" cu containsKey().
+        System.out.println("Există rust? " + freq.containsKey("rust"));
+        // * 5. Afișează DOAR cheile (keySet()), apoi DOAR valorile (values()).
+        System.out.println("Chei: " + freq.keySet());
+        System.out.println("Valori: " + freq.values());
+        // * 6. Parcurge map-ul cu entrySet() și afișează "cheia -> valoarea" pentru fiecare intrare.
+        System.out.println("Afisare perechi cheie-valoare: ");
+        for (Map.Entry<String, Integer> entry : freq.entrySet()) {
+            System.out.println("  " + entry.getKey() + " => " + entry.getValue());
+        }
     }
 }
 
