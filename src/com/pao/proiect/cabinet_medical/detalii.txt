@@ -1,0 +1,82 @@
+DETALII PROIECT PAOJ
+
+
+1. Listă de 10 Tipuri de Obiecte (Clase)
+
+    1. Persoana (Clasă Abstractă): Părintele pentru Medic și Pacient (conține câmpuri comune: nume, CNP, email).
+
+    - Medic: Extinde Persoana, adaugă Specializare, GradMedic (rezident, specialist, primar) și TarifConsultație.
+
+    - Pacient (Client): Extinde Persoana, adaugă IstoricAlergii și NumarAsigurare.
+
+    2. Programare: Obiectul care leagă un Medic, Pacient, TipConsultatie, DataOra, Sala.
+
+    3. TipConsultatie: Enum Specializare, nume, pret, durata, dictionar Echipament: (sali unde se afla)
+
+    4. Reteta: Conține o listă de obiecte Medicament, instrucțiuni de administrare, Medic emitator, Pacient, dataEmiterii.
+
+    5. Medicament: Nume comercial, substanță activă, preț și stoc disponibil în farmacia clinicii.
+
+    6. Plata (Factura): Gestionează tranzacția, metoda de plată (Card/Cash) și statusul (Achitat/Restant).
+
+    7. Cabinet (Sala): Locația fizică unde se desfășoară consultația (Echipamente disponibile, Etaj).
+            --contine un set de echipamente disponibile in sala, plus un camp de valabilitate echipament:
+                        -- echipament1: 1/0, echipament 2: 1/0
+
+    8. Echipament: obiect de aparatura/echipamente disponibile in cabinetul medical
+
+
+
+
+
+2. Listă de 13 Acțiuni/Interogări 
+
+
+    1. Validare Disponibilitate: Verifică dacă un medic este liber și dacă sala de consultație nu este ocupată la ora aleasă.
+
+    2. Programare Rapidă: Metodă care găsește primul slot liber la orice medic dintr-o anumită specializare.
+            --apeleaza 15
+            --in functie de lista de tipul de consultatie, se uita ce echipament ar fi necesar din dotarea cabinetului
+            --apeleaza functia 15, care ii intoarce o lista/dictionar de {sala: interval_liber...} pentru a alege
+            --apoi ia toti medicii de la specializarea data apeland 18 si il gaseste pe primul care are
+                --loc la prima sala libera, daca nu vede la urmatorul, daca nu la final schimba sala
+                --deci pentru fiecare sala: verifica fiecare medic
+            --creaza apoi un obiet de tip Programare si comunica pacientului datele
+
+    3. Anulare cu Penalizare: Șterge o programare și, dacă e făcută cu mai puțin de 2 ore înainte, generează o notă de plată parțială.
+
+    4. Istoric Medical Complet: Interogare care adună toate rețetele și observațiile clinice pentru un anumit pacient.
+
+    5. Calcul Salariu Medic: Calculează suma datorată medicului bazat pe numărul de consultații efectuate și tariful său.
+
+    6. Raport Gestiune Stoc: Afișează toate medicamentele din sistem al căror stoc este sub pragul de 5 unități.
+
+    7. Filtrare Avansată Pacienți: Căutarea pacienților după criterii multiple (ex: toți pacienții peste 60 de ani cu o anumită afecțiune).
+
+    8. Generare Bon Fiscal: Transformă datele dintr-o programare finalizată într-un format text/PDF pentru plată.
+
+    9. Schimb de Tură: Permite mutarea tuturor programărilor unui medic pe un alt medic (în caz de urgență/concediu).
+
+    10. Statistici Specializări: Determină care este cea mai solicitată specializare din clinică în ultima lună.
+
+    11. Verificare Asigurare: Metodă care verifică dacă un pacient are asigurare validă (pentru a aplica discount-uri).
+
+    12. Autentificare Securizată: Verificarea credențialelor unui utilizator la intrarea în sistem.
+
+    13. Curățare Date Vechi: Arhivarea sau ștergerea programărilor mai vechi de 5 ani pentru a optimiza "baza de date" (lista).
+
+    14. Igienizare Sala: rezerva un interval din programul fiecarei sali intr-o zi pentru a igieniza sala
+
+    15. Verificare Echipamente: apelata in clasa Service cand se doreste crearea unei programari, daca pacientul necesita un echipament in sala, verifica in ce sala
+            --gaseste echipamentul respectiv, si intoarce o lista ordonata a salilor in functie de cel mai devreme time slot liber pentru sala respectiva
+
+    16. Populare Program Medici: script "automat" ce incarca dictionarele ce contin programul medicilor cu 
+            -- urmatoarele 7 zile (de dupa urmatoarele 14, care sunt deja incarcate)
+            -- mereu acest dictionar va avea 21 de intrari (pentru moment): la terminarea saptamanii, se ia a treia saptamana de dupa si se incarca cu programul default
+            -- programul default este 7 - 15 pentru zilele din timpul saptamanii
+
+    17. Modificare Orar Medic: se modifica programul pe o zi cu intervalele orare date ca argument
+
+    18. mediciSpecializare() - lista cu toti medicii de la o specializare
+
+    19. validareDecont() - clinica trebuie sa demonstreze utilizarea unui aparat performant pt decontul de consultatii costisitoare
