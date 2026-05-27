@@ -1,12 +1,5 @@
 package com.pao.laboratory09.exercise2;
 
-import com.pao.laboratory09.exercise1.TipTranzactie;
-
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.util.*;
-
 public class Main {
     private static final String OUTPUT_FILE = "output/lab09_ex2.bin";
     private static final int RECORD_SIZE = 32;
