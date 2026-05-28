@@ -1,4 +1,4 @@
-# Exercise 2 (Bonus) - Demo socket multi-client
+c# Exercise 2 (Bonus) - Demo socket multi-client
 
 ## Scenariu
 
