@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 
 public class Main {
     private static final Set<String> HIGH_RISK_COUNTRIES =
@@ -27,6 +28,19 @@ public class Main {
         CHANNEL_SCORE.put("ATM", 0);
     }
 
+    private static final int FLAG_THRESHOLD = 60;
+
+    // PARTEA A:
+    private static final Predicate<Transaction> amountOverThreshold = tx -> tx.amount >= 1000.0;
+    private static final Predicate<Transaction> countryInRisk = tx -> HIGH_RISK_COUNTRIES.contains(tx.country);
+    private static final Predicate<Transaction> channelSuspicious = tx -> "WEB".equals(tx.channel) || "APP".equals(tx.channel) || "CRYPTO".equals(tx.channel);
+
+    // PARTEA B: 
+    private static final Predicate<Transaction> flaggedRule = amountOverThreshold
+            .or(countryInRisk)
+            .or(channelSuspicious);
+
+    //Partea C:
     private static final Comparator<Transaction> BY_RISK_DESC_THEN_ID_ASC =
             Comparator.comparingInt(Main::riskScore).reversed().thenComparingInt(t -> t.id);
 
